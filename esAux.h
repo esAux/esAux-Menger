@@ -1314,6 +1314,30 @@ void makeLambert1()
 void makeLambert2()
 {
     GLuint vertexShader = glCreateShader(GL_VERTEX_SHADER);
+    glShaderSource(vertexShader, 1, &v1, NULL);
+    glCompileShader(vertexShader);
+
+    GLuint fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
+    glShaderSource(fragmentShader, 1, &f1, NULL);
+    glCompileShader(fragmentShader);
+
+    shdLambert3 = glCreateProgram();
+        glAttachShader(shdLambert3, vertexShader);
+        glAttachShader(shdLambert3, fragmentShader);
+    glLinkProgram(shdLambert3);
+
+    shdLambert3_position = glGetAttribLocation(shdLambert3, "position");
+    shdLambert3_color = glGetAttribLocation(shdLambert3, "color");
+    
+    shdLambert3_projection = glGetUniformLocation(shdLambert3, "projection");
+    shdLambert3_modelview = glGetUniformLocation(shdLambert3, "modelview");
+    shdLambert3_lightpos = glGetUniformLocation(shdLambert3, "lightpos");
+    shdLambert3_opacity = glGetUniformLocation(shdLambert3, "opacity");
+}
+
+void makeLambert3()
+{
+    GLuint vertexShader = glCreateShader(GL_VERTEX_SHADER);
     glShaderSource(vertexShader, 1, &v12, NULL);
     glCompileShader(vertexShader);
 
@@ -1334,30 +1358,6 @@ void makeLambert2()
     shdLambert2_modelview = glGetUniformLocation(shdLambert2, "modelview");
     shdLambert2_lightpos = glGetUniformLocation(shdLambert2, "lightpos");
     shdLambert2_opacity = glGetUniformLocation(shdLambert2, "opacity");
-}
-
-void makeLambert3()
-{
-    GLuint vertexShader = glCreateShader(GL_VERTEX_SHADER);
-    glShaderSource(vertexShader, 1, &v1, NULL);
-    glCompileShader(vertexShader);
-
-    GLuint fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
-    glShaderSource(fragmentShader, 1, &f1, NULL);
-    glCompileShader(fragmentShader);
-
-    shdLambert3 = glCreateProgram();
-        glAttachShader(shdLambert3, vertexShader);
-        glAttachShader(shdLambert3, fragmentShader);
-    glLinkProgram(shdLambert3);
-
-    shdLambert3_position = glGetAttribLocation(shdLambert3, "position");
-    shdLambert3_color = glGetAttribLocation(shdLambert3, "color");
-    
-    shdLambert3_projection = glGetUniformLocation(shdLambert3, "projection");
-    shdLambert3_modelview = glGetUniformLocation(shdLambert3, "modelview");
-    shdLambert3_lightpos = glGetUniformLocation(shdLambert3, "lightpos");
-    shdLambert3_opacity = glGetUniformLocation(shdLambert3, "opacity");
 }
 
 void makePhong()
