@@ -518,7 +518,7 @@ void esOrtho(ESMatrix *result, const GLfloat left, const GLfloat right, const GL
 void esLookAt(ESMatrix *result, const GLfloat origin_x, const GLfloat origin_y, const GLfloat origin_z, const GLfloat dirnorm_x, const GLfloat dirnorm_y, const GLfloat dirnorm_z)
 {
     ESVector up;
-    up.x = 0, up.y = 1, up.z = 0;
+    up.x = 0.f, up.y = 1.f, up.z = 0.f;
 
     ESVector dirn;
     dirn.x = dirnorm_x;
@@ -720,7 +720,7 @@ void esGetViewDirection(ESVector *result, const ESMatrix matrix)
 GLfloat esRandFloat(const GLfloat min, const GLfloat max)
 {
     static GLfloat rndmax = (GLfloat)RAND_MAX;
-    return ( (((GLfloat)rand())+1e-7 / rndmax) * (max-min) ) + min;
+    return ( (((GLfloat)rand())+1e-7f / rndmax) * (max-min) ) + min;
 }
 
 void esBind(const GLenum target, GLuint* buffer, const void* data, const GLsizeiptr datalen, const GLenum usage)
@@ -830,7 +830,7 @@ void qInvert(ESVector* q)
 void qDirection(ESVector* rq, const ESVector vn)
 {
     ESVector up;
-    up.x = 0, up.y = 1, up.z = 0;
+    up.x = 0.f, up.y = 1.f, up.z = 0.f;
 
     ESVector c;
     vCross(&c, up, vn);
@@ -865,7 +865,7 @@ void qRotV(ESVector* vn, const ESVector qn) // not tested
     const GLfloat s = qn.w;
     const GLfloat a = 2.0f *  vDot(qn, *vn);
     const GLfloat s2du = s*s - vDot(qn, qn);
-    const GLfloat x2s = 2.0 * s;
+    const GLfloat x2s = 2.0f * s;
     ESVector c;
     vCross(&c, qn, *vn);
 
