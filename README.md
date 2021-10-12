@@ -11,7 +11,7 @@ Keyboard Keys:
 z = Solid / Opaque
 x = Half Translucent
 a = Lambertian
-b = Phong
+s = Phong
 
 Mouse Keys:
 Left click / touch = Rotate camera
